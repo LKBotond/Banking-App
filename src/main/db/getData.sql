@@ -1,14 +1,28 @@
-/*Get User*/
+/*Get User after logged in*/
 SELECT
     user_ID,
-    account_ID
+    name_Encrypted,
+    iv
 FROM
     users
 WHERE
-    (
-        name_Hash = ?
-        AND pass_Hash = ?
-    );
+    email = ?;
+
+/*get user for authentication*/
+SELECT
+    pass_Hash
+FROM
+    users
+WHERE
+    email = ?;
+
+/*Get Email for User*/
+SELECT
+    email
+FROM
+    users
+WHERE
+    email = ?;
 
 /*Get accounts for user*/
 SELECT

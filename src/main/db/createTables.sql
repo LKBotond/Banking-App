@@ -12,8 +12,10 @@ CREATE TABLE
 
 CREATE TABLE
     users (
-        user_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        name_Hash TEXT,
+        user_ID INTEGER PIMARY KEY AUTOINCREMENT NOT NULL,
+        email TEXT,
+        name_Encrypted TEXT,
+        iv TEXT,
         pass_Hash TEXT,
         registered TEXT,
     );

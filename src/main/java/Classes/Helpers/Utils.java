@@ -10,4 +10,19 @@ public class Utils {
         return key_List;
     }
 
+    public static void addToExistingObjectList(ArrayList<Object> list, Object key) {
+        list.add(key);
+    }
+
+    public static int stringToInt(String input) {
+        Integer num;
+        try {
+            num = Integer.parseInt(input);
+            return num;
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number: " + input);
+            return 0;
+        }
+    }
+
 }

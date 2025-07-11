@@ -17,5 +17,5 @@ buildNumber.properties
 .classpath
 
 .vscode
-
+.gitignore
 src/test

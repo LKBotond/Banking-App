@@ -1,4 +1,4 @@
-package Classes.Encrypt;
+package Classes.Security;
 
 import java.util.Base64;
 import java.util.ArrayList;
@@ -21,7 +21,10 @@ public class Encrypt {
     int bytes = 12;
     int bit_Length = 128;
 
-    public String HashWithArgon2(String password) {
+    Encrypt() {
+    };
+
+    public String hashWithArgon2(String password) {
         Argon2 engine = Argon2Factory.create();
         char[] pass_Array = password.toCharArray();
         try {
@@ -53,14 +56,13 @@ public class Encrypt {
             cipher.init(Cipher.ENCRYPT_MODE, secret_Key, gcm_Spec);
 
             byte[] encrypted = cipher.doFinal(data.getBytes());
-            encrypted_And_IV.add(Base64.getEncoder().encodeToString(iv));
             encrypted_And_IV.add(Base64.getEncoder().encodeToString(encrypted));
+            encrypted_And_IV.add(Base64.getEncoder().encodeToString(iv));
 
         } catch (Exception e) {
             System.out.println(e);
         }
         return encrypted_And_IV;
-
     }
 
     public String decryptGCM(ArrayList<String> encrypted_And_IV, String key) {
