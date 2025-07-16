@@ -30,11 +30,12 @@ This is my first ever java project, its a backend for a banking application. For
 
 ### Helpers:
 
-**src/main/java/Classes/Helpers/Input.java :** Wrapper to get CLI inputs
+**src/main/java/Classes/Helpers/Input.java :** Wrapper to get CLI inputs.
 **src/main/java/Classes/Helpers/TimeH.java :** Contains methods to get current time or time in the future.
-**src/main/java/Classes/Helpers/Utils.java :** Contains helper methods to convert between data types
+**src/main/java/Classes/Helpers/Utils.java :** Contains helper methods to convert between data types.
 
 ## Roadmap:
+
 1.  Currently authentication rellies on a password being exactly 16 bytes in length, so adding a propper key derivation (PBKDF2) is also on the horizon.
 2.  Currently transactions are handled between account ID's, I'm going to add card number generation /authentication and association as well.
 3.  Rudimentary front end integration with secure communication
