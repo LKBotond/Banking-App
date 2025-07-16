@@ -8,31 +8,30 @@ This is my first ever java project, its a backend for a banking application. For
 
 ### DB acces and IO:
 
-**src/main/java/Classes/DBInterface/DBQueries.java :** Holds String templates for SQL queries.
-**src/main/java/Classes/DBInterface/DBInterface.java :** Holds methods to get data in and out of the database.
-**src/main/java/Classes/accounts/AccountDAO.java :** Applies DBInterface's methods to get Account specific data in and out of the database.
-**src/main/java/Classes/Person/PersonDAO.java :** Applies DBInterface's methods to get User specific data in and out of the database.
+- **src/main/java/Classes/DBInterface/DBQueries.java :** Holds String templates for SQL queries.
+- **src/main/java/Classes/DBInterface/DBInterface.java :** Holds methods to get data in and out of the database.
+- **src/main/java/Classes/accounts/AccountDAO.java :** Applies DBInterface's methods to get Account specific data in and out of the database.
+- **src/main/java/Classes/Person/PersonDAO.java :** Applies DBInterface's methods to get User specific data in and out of the database.
 
 ### Security / Authentication:
 
-**src/main/java/Classes/Security/Encrypt.java :** Holds methods to Encrypt, Decrypt and Hash data.
-**src/main/java/Classes/Security/Authenticator.java :** Holds methods for the Validation, Login, and registration processes.
+- **src/main/java/Classes/Security/Encrypt.java :** Holds methods to Encrypt, Decrypt and Hash data.
+- **src/main/java/Classes/Security/Authenticator.java :** Holds methods for the Validation, Login, and registration processes.
 
 ### Data Transfer:
 
-**src/main/java/Classes/Transaction/Transaction.java :** contains methods to facilitate and log transactions between accounts.
+- **src/main/java/Classes/Transaction/Transaction.java :** contains methods to facilitate and log transactions between accounts.
 
 ### Holders:
 
-**src/main/java/Classes/accounts/Account.java :** Holds account_ID and funds, ascociated with said ID, contains methods to add or remove from said funds.
-
-**src/main/java/Classes/Person/Person.java :** Holds User specific information (ID, name, accounts, cards{to be added}).
+- **src/main/java/Classes/accounts/Account.java :** Holds account_ID and funds, ascociated with said ID, contains methods to add or remove from said funds.
+- **src/main/java/Classes/Person/Person.java :** Holds User specific information (ID, name, accounts, cards{to be added}).
 
 ### Helpers:
 
-**src/main/java/Classes/Helpers/Input.java :** Wrapper to get CLI inputs.
-**src/main/java/Classes/Helpers/TimeH.java :** Contains methods to get current time or time in the future.
-**src/main/java/Classes/Helpers/Utils.java :** Contains helper methods to convert between data types.
+- **src/main/java/Classes/Helpers/Input.java :** Wrapper to get CLI inputs.
+- **src/main/java/Classes/Helpers/TimeH.java :** Contains methods to get current time or time in the future.
+- **src/main/java/Classes/Helpers/Utils.java :** Contains helper methods to convert between data types.
 
 ## Roadmap:
 
