@@ -25,6 +25,7 @@ This is my first ever java project, its a backend for a banking application. For
 ### Holders:
 
 **src/main/java/Classes/accounts/Account.java :** Holds account_ID and funds, ascociated with said ID, contains methods to add or remove from said funds.
+
 **src/main/java/Classes/Person/Person.java :** Holds User specific information (ID, name, accounts, cards{to be added}).
 
 ### Helpers:
