@@ -66,10 +66,10 @@ public class Encrypt {
     }
 
     public String decryptGCM(ArrayList<String> encrypted_And_IV, String key) {
-        String decrypted_String = "FAILIURE";
+        String decrypted_String;
         try {
-            byte[] iv = Base64.getDecoder().decode(encrypted_And_IV.get(0));
-            byte[] encrypted = Base64.getDecoder().decode(encrypted_And_IV.get(1));
+            byte[] encrypted = Base64.getDecoder().decode(encrypted_And_IV.get(0));
+            byte[] iv = Base64.getDecoder().decode(encrypted_And_IV.get(1));
 
             SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(), "AES");
             Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
@@ -78,9 +78,10 @@ public class Encrypt {
 
             byte[] decrypted = cipher.doFinal(encrypted);
             decrypted_String = new String(decrypted);
+            return decrypted_String;
         } catch (Exception e) {
             System.out.println(e);
         }
-        return decrypted_String;
+        return null;
     }
 }
