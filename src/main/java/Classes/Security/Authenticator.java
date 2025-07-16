@@ -28,7 +28,7 @@ public class Authenticator {
         String pass_On_Record = person_Fetcher.getPassByEmail(email);
         return engine.verifyPass(pass_On_Record, pass);
     }
-//have to look and finish SQL queries set up propper get column and get row methods;
+
     public Person registerPerson(String email, String full_Name, String pass) {
 
         ArrayList<String> encrypted_Name_And_IV = engine.encryptWithAESGCM(full_Name, pass);
@@ -40,7 +40,7 @@ public class Authenticator {
         person_Fetcher.addPerson(email, encrypted_Name, IV, pass_Hash);
 
         Person current = person_Fetcher.getPersonByEmail(email);
-        
+
         current.splitName(full_Name);
         account_Fetcher.addAccountToPerson(current.getUserId(), 0);
 

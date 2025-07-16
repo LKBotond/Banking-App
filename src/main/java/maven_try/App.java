@@ -35,4 +35,4 @@ public class App {
 
 }
 // plan / todo
-// sort out user and db interactions
+// create the interactions

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -117,8 +116,6 @@ public class DBInterface {
 
     }
 
-    // THis only returns every element from a single column HJAAAAAAAA
-    // need a method that returns every element from every column
     public ArrayList<String> getStringArrayList(String query, List<Object> keys) {
         ArrayList<String> result = new ArrayList<>();
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
@@ -160,7 +157,7 @@ public class DBInterface {
             ResultSet rs = pstmt.executeQuery();
             ResultSetMetaData metaData = rs.getMetaData();
             if (rs.next()) {
-                for (int i = 1; i < metaData.getColumnCount(); i++) {
+                for (int i = 1; i <= metaData.getColumnCount(); i++) {
                     if (columns.contains(metaData.getColumnName(i))) {
                         result.add(rs.getString(i));
                     }

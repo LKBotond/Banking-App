@@ -23,7 +23,6 @@ public class PersonDAO {
                 Utils.objectListify(email));
     }
 
-    // maybe just maybe call this from the authenticator?
     public Person getPersonByEmail(String email) {
         ArrayList<String> needed_Columns = new ArrayList<>();
         needed_Columns.add("user_ID");
