@@ -16,7 +16,7 @@ This is my first ever java project, its a backend for a banking application. For
 ### Security / Authentication:
 
 **src/main/java/Classes/Security/Encrypt.java :** Holds methods to Encrypt, Decrypt and Hash data.
-**src/main/java/Classes/Security/Authenticator.java :** Holds methods validate Login, and registration processes.
+**src/main/java/Classes/Security/Authenticator.java :** Holds methods for the Validation, Login, and registration processes.
 
 ### Data Transfer:
 
@@ -34,8 +34,6 @@ This is my first ever java project, its a backend for a banking application. For
 **src/main/java/Classes/Helpers/Utils.java :** Contains helper methods to convert between data types
 
 ## Roadmap:
-
-1.  I'll clean up the codebase so everything works more smoothly, especially the SQL integration bit.
-2.  Currently authentication rellies on a password being exactly 16 bytes in length, so adding a propper key derivation (PBKDF2) is also on the horizon.
-3.  Currently transactions are handled between account ID's, I'm going to add card number generation /authentication and association as well.
-4.  Rudimentary front end integration with secure communication
+1.  Currently authentication rellies on a password being exactly 16 bytes in length, so adding a propper key derivation (PBKDF2) is also on the horizon.
+2.  Currently transactions are handled between account ID's, I'm going to add card number generation /authentication and association as well.
+3.  Rudimentary front end integration with secure communication
