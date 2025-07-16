@@ -29,6 +29,15 @@ public class Person {
         this.accounts.add(account);
     }
 
+    public Account getAccountByID(int account_ID) {
+        for (Account account : accounts) {
+            if (account.getAccounID() == account_ID) {
+                return account;
+            }
+        }
+        return null;
+    }
+
     public void splitName(String full_Name) {
         String[] parts = full_Name.split(" ", 2);
         this.name = parts[0];

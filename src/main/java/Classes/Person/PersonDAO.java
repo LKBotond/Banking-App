@@ -45,4 +45,12 @@ public class PersonDAO {
 
         connection.insertData(DBQueries.ADD_USER, credentials);
     }
+
+    public void addLoginDate(int user_ID) {
+        connection.insertData(DBQueries.ADD_LOGIN_DATE, Utils.objectListify(user_ID));
+    }
+
+    public void addLogoutDate(int user_ID) {
+        connection.insertData(DBQueries.ADD_LOGOUT_DATE, Utils.objectListify(user_ID));
+    }
 }

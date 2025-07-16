@@ -41,6 +41,8 @@ public class Authenticator {
 
         Person current = person_Fetcher.getPersonByEmail(email);
 
+        person_Fetcher.addLoginDate(current.getUserId());
+
         current.splitName(full_Name);
         account_Fetcher.addAccountToPerson(current.getUserId(), 0);
 
@@ -64,6 +66,7 @@ public class Authenticator {
         }
 
         Person current = person_Fetcher.getPersonByEmail(email);
+        person_Fetcher.addLoginDate(current.getUserId());
 
         String decrypted_Name = engine.decryptGCM(current.getEncryptedNameAndIv(), pass);
         current.splitName(decrypted_Name);
