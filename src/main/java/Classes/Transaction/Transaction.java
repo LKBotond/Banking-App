@@ -1,13 +1,19 @@
 package Classes.Transaction;
 
 import Classes.accounts.AccountDAO;
+
+import java.sql.SQLDataException;
+import java.sql.SQLException;
+
 import Classes.accounts.Account;
 
 public class Transaction {
     private AccountDAO fetcher;
+    private TransactionDAO setter;
 
-    Transaction(AccountDAO fetcher) {
+    Transaction(AccountDAO fetcher, TransactionDAO setter) {
         this.fetcher = fetcher;
+        this.setter = setter;
     }
 
     public boolean transfer(Account sender, Account receiver, int sum) {
@@ -16,8 +22,12 @@ public class Transaction {
             return false;
         }
         performTransfer(sender, receiver, sum);
+        setter.setAutoCommit(false);
         updateDatabase(sender, receiver);
+
         logTransaction(sender, receiver, sum);
+        setter.setAutoCommit(true);
+
         return true;
     }
 
@@ -30,9 +40,14 @@ public class Transaction {
         receiver.addToFunds(sum);
     }
 
-    private void updateDatabase(Account sender, Account receiver) {
-        fetcher.updateBalanceForAccount(sender.getAccounID(), sender.getBalance());
-        fetcher.updateBalanceForAccount(receiver.getAccounID(), receiver.getBalance());
+    private boolean updateDatabase(Account sender, Account receiver) {
+        try {
+            fetcher.updateBalanceForAccount(sender.getAccounID(), sender.getBalance());
+            fetcher.updateBalanceForAccount(receiver.getAccounID(), receiver.getBalance());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private void logTransaction(Account sender, Account receiver, int sum) {

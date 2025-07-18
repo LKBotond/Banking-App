@@ -31,7 +31,7 @@ public class DBInterface {
     }
 
     // complex input methods
-    public void insertData(String query, List<Object> data) {
+    public void insertData(String query, List<Object> data) throws SQLException {
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             for (int i = 0; i < data.size(); i++) {
                 Object item = data.get(i);
@@ -44,13 +44,11 @@ public class DBInterface {
                 }
             }
             pstmt.execute();
-        } catch (SQLException error) {
-            System.out.println(error);
-        }
+        } 
     }
 
     // Simple output methods
-    public String getString(String query, List<Object> keys) {
+    public String getString(String query, List<Object> keys) throws SQLException {
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             for (int i = 0; i < keys.size(); i++) {
                 Object item = keys.get(i);
@@ -64,13 +62,10 @@ public class DBInterface {
             }
             ResultSet rs = pstmt.executeQuery();
             return rs.next() ? rs.getString(1) : null;
-        } catch (SQLException exception) {
-            System.out.println("error: " + exception);
         }
-        return null;
     }
 
-    public int getInt(String query, List<Object> keys) {
+    public int getInt(String query, List<Object> keys) throws SQLException {
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             for (int i = 0; i < keys.size(); i++) {
                 Object item = keys.get(i);
@@ -84,16 +79,13 @@ public class DBInterface {
             }
             ResultSet rs = pstmt.executeQuery();
             return rs.next() ? rs.getInt(1) : null;
-        } catch (SQLException exception) {
-            System.out.println("error: " + exception);
         }
-        return 0;
     }
 
     // Complex output methods
-    public ArrayList<Integer> getIntArrayList(String query, List<Object> keys) {
-        ArrayList<Integer> result = new ArrayList<>();
+    public ArrayList<Integer> getIntArrayList(String query, List<Object> keys) throws SQLException {
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            ArrayList<Integer> result = new ArrayList<>();
             for (int i = 0; i < keys.size(); i++) {
                 Object item = keys.get(i);
                 if (item instanceof Integer) {
@@ -109,16 +101,12 @@ public class DBInterface {
                 result.add(rs.getInt(1));
             }
             return result;
-        } catch (SQLException exception) {
-            System.out.println("error: " + exception);
         }
-        return result;
-
     }
 
-    public ArrayList<String> getStringArrayList(String query, List<Object> keys) {
-        ArrayList<String> result = new ArrayList<>();
+    public ArrayList<String> getStringArrayList(String query, List<Object> keys) throws SQLException {
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            ArrayList<String> result = new ArrayList<>();
             for (int i = 0; i < keys.size(); i++) {
                 Object item = keys.get(i);
                 if (item instanceof Integer) {
@@ -134,16 +122,13 @@ public class DBInterface {
                 result.add(rs.getString(1));
             }
             return result;
-
-        } catch (SQLException exception) {
-            System.out.println("error: " + exception);
         }
-        return result;
     }
 
-    public ArrayList<String> getStringArrayListForRow(String query, List<Object> keys, List<String> columns) {
-        ArrayList<String> result = new ArrayList<>();
+    public ArrayList<String> getStringArrayListForRow(String query, List<Object> keys, List<String> columns)
+            throws SQLException {
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            ArrayList<String> result = new ArrayList<>();
             for (int i = 0; i < keys.size(); i++) {
                 Object item = keys.get(i);
                 if (item instanceof Integer) {
@@ -163,14 +148,8 @@ public class DBInterface {
                     }
                 }
             }
-
             return result;
-
-        } catch (SQLException exception) {
-            System.out.println("error: " + exception);
         }
-        return result;
-
     }
 
     public boolean checkForTable(String name) {
@@ -194,6 +173,18 @@ public class DBInterface {
                 createTable(creator_Queries.get(i));
             }
         }
+    }
+
+    public void setAutoCommit(boolean state) throws SQLException {
+        connection.setAutoCommit(state);
+    }
+
+    public void commit() throws SQLException {
+        connection.commit();
+    }
+
+    public void rollback() throws SQLException {
+        connection.rollback();
     }
 
     private Object determineDatatype(Object input) {

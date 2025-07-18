@@ -21,6 +21,10 @@ public class Person {
 
     }
 
+    public static Person empty() {
+        return new Person(0, null, null, null);
+    }
+
     public void setAccountsForUser(ArrayList<Account> accounts) {
         this.accounts = accounts;
     }
