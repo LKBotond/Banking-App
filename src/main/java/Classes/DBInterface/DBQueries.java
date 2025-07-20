@@ -153,5 +153,5 @@ public final class DBQueries {
      * Updates the balance for an account_ID(int) with a new sum
      * Parameters funds(int), account_ID(int)
      */
-    public static final String UPDATE_BALANCE = "UPDATE accounts SET sum = ? WHERE account_ID = ?;";
+    public static final String UPDATE_BALANCE = "UPDATE accounts SET funds = ? WHERE account_ID = ?;";
 }

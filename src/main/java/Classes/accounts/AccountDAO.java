@@ -23,6 +23,11 @@ public class AccountDAO {
         }
     }
 
+    public Account getAccountByAccountID(int account_ID) {
+        int balance = getBalanceForAccount(account_ID);
+        return new Account(account_ID, balance);
+    }
+
     public int getBalanceForAccount(int account_ID) {
         try {
             return connection.getInt(DBQueries.GET_BALANCE, Utils.objectListify(account_ID));
@@ -32,14 +37,16 @@ public class AccountDAO {
         }
     }
 
-    public void updateBalanceForAccount(int account_ID, int funds) {
+    public boolean updateBalanceForAccount(int account_ID, int funds) {
         ArrayList<Object> balance_And_Key = new ArrayList<>();
         balance_And_Key.add(funds);
         balance_And_Key.add(account_ID);
         try {
             connection.insertData(DBQueries.UPDATE_BALANCE, balance_And_Key);
+            return true;
         } catch (SQLException e) {
             System.out.println("Failed to update balance for account: " + e);
+            return false;
         }
     }
 
@@ -56,15 +63,17 @@ public class AccountDAO {
         }
     }
 
-    public void recordTransaction(int sender_ID, int receiver_ID, int sum) {
+    public boolean recordTransaction(int sender_ID, int receiver_ID, int sum) {
         ArrayList<Object> sender_Receiver_And_Sum = new ArrayList<>();
         sender_Receiver_And_Sum.add(sender_ID);
         sender_Receiver_And_Sum.add(receiver_ID);
         sender_Receiver_And_Sum.add(sum);
         try {
             connection.insertData(DBQueries.UPDATE_MASTER_RECORD, sender_Receiver_And_Sum);
+            return true;
         } catch (SQLException e) {
             System.out.println("Failed to update transaction History: " + e);
+            return false;
         }
     }
 

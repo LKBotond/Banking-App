@@ -2,11 +2,11 @@
 
 ## TLDR
 
-This is my first ever java project, its a backend for a banking application. For database interactions I've utilised SQLite3. For user authentication and password hashing, Argon2.
+This is my first ever java project, its a backend for a banking application. For database interactions I've utilized SQLite3. For user authentication and password hashing, Argon2.
 
 ## Files
 
-### DB acces and IO:
+### DB access and IO:
 
 - **src/main/java/Classes/DBInterface/DBQueries.java :** Holds String templates for SQL queries.
 - **src/main/java/Classes/DBInterface/DBInterface.java :** Holds methods to get data in and out of the database.
@@ -24,7 +24,7 @@ This is my first ever java project, its a backend for a banking application. For
 
 ### Holders:
 
-- **src/main/java/Classes/accounts/Account.java :** Holds account_ID and funds, ascociated with said ID, contains methods to add or remove from said funds.
+- **src/main/java/Classes/accounts/Account.java :** Holds account_ID and funds, associated with said ID, contains methods to add or remove from said funds.
 - **src/main/java/Classes/Person/Person.java :** Holds User specific information (ID, name, accounts, cards{to be added}).
 
 ### Helpers:
@@ -35,6 +35,6 @@ This is my first ever java project, its a backend for a banking application. For
 
 ## Roadmap:
 
-1.  Currently authentication rellies on a password being exactly 16 bytes in length, so adding a propper key derivation (PBKDF2) is also on the horizon.
+1.  Currently authentication relies on a password being exactly 16 bytes in length, so adding a proper key derivation (PBKDF2) is also on the horizon.
 2.  Currently transactions are handled between account ID's, I'm going to add card number generation /authentication and association as well.
 3.  Rudimentary front end integration with secure communication

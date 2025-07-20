@@ -21,14 +21,19 @@ public class Transaction {
         if (!hasSufficientFunds(sender, sum)) {
             return false;
         }
-        performTransfer(sender, receiver, sum);
+        performTransfer(sender, receiver, sum);// updates in memory objects
         setter.setAutoCommit(false);
-        updateDatabase(sender, receiver);
-
-        logTransaction(sender, receiver, sum);
+        boolean update = updateDatabase(sender, receiver);
+        boolean log_Succesfull = logTransaction(sender, receiver, sum);
+        if (update && log_Succesfull) {
+            if (setter.commitChanges()) {
+                setter.setAutoCommit(true);
+                return true;
+            }
+        }
+        setter.rollback();
         setter.setAutoCommit(true);
-
-        return true;
+        return false;
     }
 
     private boolean hasSufficientFunds(Account sender, int sum) {
@@ -41,16 +46,19 @@ public class Transaction {
     }
 
     private boolean updateDatabase(Account sender, Account receiver) {
-        try {
-            fetcher.updateBalanceForAccount(sender.getAccounID(), sender.getBalance());
-            fetcher.updateBalanceForAccount(receiver.getAccounID(), receiver.getBalance());
+        boolean update_1 = fetcher.updateBalanceForAccount(sender.getAccounID(), sender.getBalance());
+        boolean update_2 = fetcher.updateBalanceForAccount(receiver.getAccounID(), receiver.getBalance());
+        if (update_1 && update_2) {
             return true;
-        } catch (Exception e) {
-            return false;
         }
+        return false;
     }
 
-    private void logTransaction(Account sender, Account receiver, int sum) {
-        fetcher.recordTransaction(sender.getAccounID(), receiver.getAccounID(), sum);
+    private boolean logTransaction(Account sender, Account receiver, int sum) {
+        boolean log_Succesfull = fetcher.recordTransaction(sender.getAccounID(), receiver.getAccounID(), sum);
+        if (log_Succesfull) {
+            return true;
+        }
+        return false;
     }
 }

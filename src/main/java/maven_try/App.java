@@ -53,26 +53,41 @@ public class App {
         System.out.println("Add to Someone else's funds : 2");
         System.out.println("Logout : 3");
 
+        action = Handler.getInt();
         if (action == 1) {
             System.out.println("Adding to my Funds");
             System.out.println("To which account?");
             int account_ID = Handler.getInt();
-            Account account= test.getAccountByID(account_ID);
+            Account account = test.getAccountByID(account_ID);
             System.out.println("How Much:");
             int sum = Handler.getInt();
             account.addToFunds(sum);
             account_Fetcher.updateBalanceForAccount(account_ID, sum);
 
-
         } else if (action == 2) {
+            System.out.println("Adding Account:");
+            System.out.println("Account ID:");
+            int account_ID = Handler.getInt();
+            Account Someone_Else_s = account_Fetcher.getAccountByAccountID(account_ID);
+            if (Someone_Else_s == null) {
+                System.out.println("Account not found");
+                return;
+            }
+            System.out.println("Account found");
+            System.out.println("How much?");
+            int sum = Handler.getInt();
+            Someone_Else_s.addToFunds(sum);
+            account_Fetcher.updateBalanceForAccount(Someone_Else_s.getAccounID(), Someone_Else_s.getBalance());
         } else if (action == 3) {
-
         } else {
             System.out.println("Invalid action specified");
         }
+        
 
     }
 
 }
 // plan / todo
-// create the interactions
+// create mock transfers
+// create KDF function for encryption
+// rudimentary frontend integeration

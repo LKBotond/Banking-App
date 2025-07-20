@@ -19,11 +19,13 @@ public class TransactionDAO {
         }
     }
 
-    public void commitChanges() {
+    public boolean commitChanges() {
         try {
             connection.commit();
+            return true;
         } catch (SQLException e) {
             System.out.println("Failed to commit changes: " + e);
+            return false;
         }
     }
 
